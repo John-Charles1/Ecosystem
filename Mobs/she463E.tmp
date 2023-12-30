@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://k8tygq34p4m6"]
+
+[ext_resource type="Texture2D" uid="uid://iejmx2pngu5j" path="res://MiniWorldSprites/Animals/HornedSheep.png" id="1_dm3rg"]
+[ext_resource type="Script" path="res://Mobs/sheep.gd" id="1_xu105"]
+[ext_resource type="Script" path="res://Mobs/StateMachine.gd" id="3_jiqov"]
+[ext_resource type="Script" path="res://Scripts/Idle.gd" id="4_a8fop"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr5e6"]
+atlas = ExtResource("1_dm3rg")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ba2w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr5e6")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r7cp"]
+size = Vector2(34, 28.5)
+
+[node name="Sheep" type="CharacterBody2D"]
+script = ExtResource("1_xu105")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_jiqov")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_a8fop")
+enemy = NodePath("../..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -2)
+scale = Vector2(2.5625, 2.5625)
+sprite_frames = SubResource("SpriteFrames_0ba2w")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -3.75)
+shape = SubResource("RectangleShape2D_4r7cp")
