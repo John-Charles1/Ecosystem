@@ -1,5 +1,6 @@
 extends Label
 
+var gnder
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -7,4 +8,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = str($"..".currentState)
+	gnder = "male" if $"..".gender else "female"
+	text = str($"..".currentState+'\n'+gnder)
