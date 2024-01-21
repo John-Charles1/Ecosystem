@@ -21,12 +21,14 @@ func Update(delta: float):
 
 func Physics_Update(delta: float):
 	var direction = player.global_position - enemy.global_position if player != null else enemy.global_position
+	var time = 0
 	if(enemy.test):
 		enemy.velocity = direction.normalized() * move_speed
 	else:
 		enemy.velocity = Vector2(0,0)
-	
+
 	if(!enemy.test):
 		#print("follow")
+		enemy.currentState = "Roaming"
 		Transitioned.emit(self, "Idle")
 

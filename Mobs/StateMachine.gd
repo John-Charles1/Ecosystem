@@ -3,6 +3,7 @@ extends Node
 @export var initial_state : State
 
 var current_state : State
+var curr
 var states : Dictionary = {}
 
 func _ready():

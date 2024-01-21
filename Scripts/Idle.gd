@@ -26,4 +26,6 @@ func Physics_Update(delta: float):
 	
 	if(enemy.test):
 		#print("Idle")
+		enemy.currentState = "Eating"
 		Transitioned.emit(self, "SheepFollow")
+		

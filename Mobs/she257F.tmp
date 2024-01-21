@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://k8tygq34p4m6"]
+[gd_scene load_steps=18 format=3 uid="uid://k8tygq34p4m6"]
 
 [ext_resource type="Texture2D" uid="uid://iejmx2pngu5j" path="res://MiniWorldSprites/Animals/HornedSheep.png" id="1_dm3rg"]
 [ext_resource type="Script" path="res://Mobs/sheep.gd" id="1_xu105"]
 [ext_resource type="Script" path="res://Mobs/StateMachine.gd" id="3_jiqov"]
 [ext_resource type="Script" path="res://Scripts/Idle.gd" id="4_a8fop"]
 [ext_resource type="Script" path="res://Scripts/SheepFollow.gd" id="4_sy2v6"]
+[ext_resource type="Script" path="res://Scripts/State.gd" id="5_dq68t"]
 [ext_resource type="Script" path="res://Mobs/Label.gd" id="6_btua3"]
 [ext_resource type="Script" path="res://Mobs/HealthBar.gd" id="7_wmnbc"]
 
@@ -79,6 +80,9 @@ enemy = NodePath("../..")
 [node name="SheepFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_sy2v6")
 enemy = NodePath("../..")
+
+[node name="Breed" type="Node" parent="StateMachine"]
+script = ExtResource("5_dq68t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -2)
