@@ -4,6 +4,9 @@ var ballPath = load("res://Mobs/predator.tscn")
 
 func createBall(mousePosition):
 	var newBall = ballPath.instantiate()
-	newBall.position = mousePosition
+	newBall.position = mousePosition if (typeof(mousePosition) != TYPE_NIL) else Vector2(0,0) 
 	newBall.position.x += 10
-	add_child(newBall)
+	if (typeof(mousePosition) != TYPE_NIL):
+		add_child(newBall)
+	else:
+		pass

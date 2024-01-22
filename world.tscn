@@ -148,38 +148,38 @@ position = Vector2(600, 535)
 position = Vector2(107, 163)
 script = ExtResource("8_udnhd")
 
-[node name="SheepSpawn" type="Node2D" parent="."]
-script = ExtResource("8_yh251")
-
-[node name="Sheep" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(688, 245)
-
-[node name="Sheep2" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(784, 342)
-
-[node name="Sheep3" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(988, 229)
-
-[node name="Sheep4" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(937, 95)
-
-[node name="Sheep5" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(652, 438)
-
-[node name="Sheep6" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(385, 395)
-
-[node name="Sheep7" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(1013, 447)
-
 [node name="PredatorSpawn" type="Node2D" parent="."]
 script = ExtResource("10_dpmnn")
 
 [node name="Predator" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
-position = Vector2(418, 370)
+position = Vector2(473, 324)
 
 [node name="Predator2" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
 position = Vector2(206, 108)
 
 [node name="Predator3" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
 position = Vector2(162, 294)
+
+[node name="Predator4" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
+position = Vector2(172, 502)
+
+[node name="Predator5" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
+position = Vector2(361, 538)
+
+[node name="Predator6" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
+position = Vector2(337, 225)
+
+[node name="SheepSpawn" type="Node2D" parent="."]
+script = ExtResource("8_yh251")
+
+[node name="Sheep" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
+position = Vector2(795, 167)
+
+[node name="Sheep2" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
+position = Vector2(857, 342)
+
+[node name="Sheep3" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
+position = Vector2(1008, 185)
+
+[node name="Sheep4" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
+position = Vector2(1033, 404)

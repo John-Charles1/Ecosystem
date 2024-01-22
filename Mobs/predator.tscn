@@ -1,15 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://cj2ids47vga5f"]
+[gd_scene load_steps=17 format=3 uid="uid://cj2ids47vga5f"]
 
 [ext_resource type="Script" path="res://Mobs/predator.gd" id="1_7jo1i"]
 [ext_resource type="Texture2D" uid="uid://bsrtl387it3yb" path="res://MiniWorldSprites/Animals/Boar.png" id="1_fvgw6"]
 [ext_resource type="Script" path="res://Mobs/StateMachine.gd" id="3_17wty"]
 [ext_resource type="Script" path="res://Scripts/Roaming.gd" id="4_1l1gh"]
 [ext_resource type="Script" path="res://Scripts/eat.gd" id="5_3pqs3"]
+[ext_resource type="Script" path="res://Scripts/predBreed.gd" id="6_dngpy"]
 [ext_resource type="Script" path="res://Mobs/StatePredator.gd" id="6_yk1eu"]
 [ext_resource type="Script" path="res://Mobs/Health.gd" id="8_f3uqn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dysv5"]
-size = Vector2(35, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32ncl"]
 atlas = ExtResource("1_fvgw6")
@@ -51,14 +49,13 @@ animations = [{
 radius = 95.021
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ca0k7"]
-radius = 20.0998
+radius = 18.0278
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6fyp"]
+size = Vector2(2.125, 0.25)
 
 [node name="Predator" type="CharacterBody2D" groups=["predator"]]
 script = ExtResource("1_7jo1i")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 3)
-shape = SubResource("RectangleShape2D_dysv5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0)
@@ -80,6 +77,10 @@ predator = NodePath("../..")
 script = ExtResource("5_3pqs3")
 enemy = NodePath("../..")
 
+[node name="predBreed" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_dngpy")
+enemy = NodePath("../..")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -98,6 +99,8 @@ offset_bottom = -63.0
 script = ExtResource("6_yk1eu")
 
 [node name="Pregnant" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [node name="Health" type="Label" parent="."]
 offset_left = -23.0
@@ -105,6 +108,10 @@ offset_top = -104.0
 offset_right = 17.0
 offset_bottom = -81.0
 script = ExtResource("8_f3uqn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17.0625, -0.125)
+shape = SubResource("RectangleShape2D_x6fyp")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

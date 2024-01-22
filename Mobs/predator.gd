@@ -10,6 +10,7 @@ var breed_drive = 0
 var gender = false
 var child_pos
 var mother_pos
+var had_a_child = false
 
 func _ready():
 	gender = randi() % 2 == 0
@@ -53,38 +54,45 @@ func _on_area_2d_body_entered(body):
 		test = true
 		player1 = body
 		print(body.name+"en")
-	elif(body.is_in_group("predator") and body != $"../StaticBody2D" and body != $"../water" and health > 15 and body != self and breed_drive >= 10):
+	elif(body.is_in_group("predator") and !body.is_in_group("plants") and body != $"../StaticBody2D" and body != $"../water" and health > 15 and body != self and breed_drive >= 10 and body.breed_drive >= 10):
 		breed = true
 		player1 = body
 		print(body.name+"en breed")
 
 func _on_area_2d_body_exited(body):
-	if(health <= 15):
-		test = false
-		player1 = body
-		print(body.name+"ex")
-	elif(health > 15):
-		breed = false
-		player1 = body
-		print(body.name+"ex breed")
+	#if(health <= 15):
+		#test = false
+		#player1 = body
+		#print(body.name+"ex")
+	#elif(health > 15):
+		#breed = false
+		#player1 = body
+		#print(body.name+"ex breed")
+	test = false
+	breed = false
+	player1 = body
 
 func _on_eat_body_entered(body):
 	if(!body.is_in_group("predator") and body != $"../water" and body.is_in_group("Sheep")):
 		health += 15
 		body.queue_free()
 		test = false
-	elif(body.is_in_group("predator") and body != $"../water" and health > 15 and body != self and breed_drive >= 10):
+	elif(body.is_in_group("predator") and !body.is_in_group("plants") and body != $"../water" and health > 15 and body != self and breed_drive >= 10 and body.breed_drive >= 10):
 		breed = false
-		$Pregnant.start()
+		if(!had_a_child):
+			$Pregnant.start()
 		child_pos = body.global_position
 		mother_pos = body
-		breed_drive = 0
+		breed_drive = -1000
+		body.breed_drive = -1000
+		had_a_child = true
+		body.had_a_child = true
 		print("bred")
 
 func _on_pregnant_timeout():
 	#$"../..".preg+=1$".."
-	if(gender == true):
-		$"..".createBall(child_pos)
+	#if(gender == true):
+	$"..".createBall(child_pos)
 
 
 

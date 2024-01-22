@@ -14,8 +14,8 @@ func _ready():
 
 func _process(delta):
 	rng.randomize()
-	rand_x = randi_range(0, 1000)
-	rand_y = randi_range(0, 1000)
+	rand_x = randi_range(0, 1154)
+	rand_y = randi_range(0, 656)
 	
 	timer += delta
 	if(timer >= 1):
@@ -25,6 +25,7 @@ func _process(delta):
 
 func inst(pos):
 	var instance = plant.instantiate()
+	instance.add_to_group("plants")
 	instance.position = pos
 	add_child(instance)
 	

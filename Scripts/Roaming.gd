@@ -29,7 +29,7 @@ func Physics_Update(delta: float):
 		predator.currentState = "Eating"
 		Transitioned.emit(self, "eat")
 	
-	#if(predator.breed):
-		##print("Idle")
-		#predator.currentState = "Breeding"
-		#Transitioned.emit(self, "Breed")
+	if(predator.breed):
+		#print("Idle")
+		predator.currentState = "Breeding"
+		Transitioned.emit(self, "predBreed")

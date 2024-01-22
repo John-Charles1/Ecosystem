@@ -64,7 +64,7 @@ size = Vector2(34, 28.5)
 radius = 93.1933
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ffk6"]
-radius = 36.0555
+radius = 22.2036
 
 [node name="Sheep" type="CharacterBody2D" groups=["Sheep"]]
 script = ExtResource("1_xu105")
@@ -121,6 +121,7 @@ script = ExtResource("8_8felr")
 
 [node name="Pregnant" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
