@@ -1,6 +1,6 @@
 extends Node2D
 
-var ballPath = load("res://Mobs/sheep.tscn")
+var ballPath = load("res://Mobs/predator.tscn")
 
 func createBall(mousePosition):
 	var newBall = ballPath.instantiate()

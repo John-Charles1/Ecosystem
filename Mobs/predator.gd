@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name DinoEnemy
+class_name Predator
 
 var player1
 @onready var test = false
@@ -40,7 +40,7 @@ func prevent_sheep_from_crossing_the_border():
 
 func flip_sheep_and_run():
 	if(velocity.length() > 0):
-		get_node("AnimatedSprite2D").play("Run")
+		get_node("AnimatedSprite2D").play("Roaming")
 
 	if(velocity.x > 0):
 		get_node("AnimatedSprite2D").flip_h = false
@@ -49,15 +49,14 @@ func flip_sheep_and_run():
 
 
 func _on_area_2d_body_entered(body):
-	if(!body.is_in_group("Sheep") and body != $"../StaticBody2D" and body != $"../water" and !body.is_in_group("predator")):
+	if(!body.is_in_group("predator") and body.is_in_group("Sheep") and body != $"../StaticBody2D" and body != $"../water"):
 		test = true
 		player1 = body
 		print(body.name+"en")
-	elif(body.is_in_group("Sheep") and body != $"../StaticBody2D" and body != $"../water" and health > 15 and body != self and breed_drive >= 10):
+	elif(body.is_in_group("predator") and body != $"../StaticBody2D" and body != $"../water" and health > 15 and body != self and breed_drive >= 10):
 		breed = true
 		player1 = body
 		print(body.name+"en breed")
-
 
 func _on_area_2d_body_exited(body):
 	if(health <= 15):
@@ -69,13 +68,12 @@ func _on_area_2d_body_exited(body):
 		player1 = body
 		print(body.name+"ex breed")
 
-
 func _on_eat_body_entered(body):
-	if(!body.is_in_group("Sheep") and body != $"../water" and !body.is_in_group("predator")):
+	if(!body.is_in_group("predator") and body != $"../water" and body.is_in_group("Sheep")):
 		health += 15
 		body.queue_free()
 		test = false
-	elif(body.is_in_group("Sheep") and body != $"../water" and health > 15 and body != self and breed_drive >= 10):
+	elif(body.is_in_group("predator") and body != $"../water" and health > 15 and body != self and breed_drive >= 10):
 		breed = false
 		$Pregnant.start()
 		child_pos = body.global_position
@@ -84,6 +82,10 @@ func _on_eat_body_entered(body):
 		print("bred")
 
 func _on_pregnant_timeout():
-		#$"../..".preg+=1$".."
-		if(gender == true):
-			$"..".createBall(child_pos)
+	#$"../..".preg+=1$".."
+	if(gender == true):
+		$"..".createBall(child_pos)
+
+
+
+

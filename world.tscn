@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bexuxlh3smovb"]
+[gd_scene load_steps=17 format=3 uid="uid://bexuxlh3smovb"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_j2sfr"]
 [ext_resource type="Texture2D" uid="uid://cqe7sks5tends" path="res://MiniWorldSprites/Ground/Grass.png" id="1_ko5qg"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://AddSheep.gd" id="8_udnhd"]
 [ext_resource type="Script" path="res://SheepSpawn.gd" id="8_yh251"]
 [ext_resource type="PackedScene" uid="uid://qiiyraa5my46" path="res://grass.tscn" id="9_rn4d4"]
+[ext_resource type="Script" path="res://PredatorSpawn.gd" id="10_dpmnn"]
+[ext_resource type="PackedScene" uid="uid://cj2ids47vga5f" path="res://Mobs/predator.tscn" id="10_tl50d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxbqq"]
 texture = ExtResource("1_ko5qg")
@@ -150,19 +152,34 @@ script = ExtResource("8_udnhd")
 script = ExtResource("8_yh251")
 
 [node name="Sheep" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(466, 221)
+position = Vector2(688, 245)
 
 [node name="Sheep2" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(653, 330)
+position = Vector2(784, 342)
 
 [node name="Sheep3" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(498, 412)
+position = Vector2(988, 229)
 
 [node name="Sheep4" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(223, 558)
+position = Vector2(937, 95)
 
 [node name="Sheep5" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(971, 278)
+position = Vector2(652, 438)
 
 [node name="Sheep6" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
-position = Vector2(807, 149)
+position = Vector2(385, 395)
+
+[node name="Sheep7" parent="SheepSpawn" instance=ExtResource("5_n5tns")]
+position = Vector2(1013, 447)
+
+[node name="PredatorSpawn" type="Node2D" parent="."]
+script = ExtResource("10_dpmnn")
+
+[node name="Predator" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
+position = Vector2(418, 370)
+
+[node name="Predator2" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
+position = Vector2(206, 108)
+
+[node name="Predator3" parent="PredatorSpawn" instance=ExtResource("10_tl50d")]
+position = Vector2(162, 294)

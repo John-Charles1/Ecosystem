@@ -1,39 +1,39 @@
-[gd_scene load_steps=18 format=3 uid="uid://k8tygq34p4m6"]
+[gd_scene load_steps=18 format=3 uid="uid://ctlliqf4w87vj"]
 
-[ext_resource type="Texture2D" uid="uid://iejmx2pngu5j" path="res://MiniWorldSprites/Animals/HornedSheep.png" id="1_dm3rg"]
-[ext_resource type="Script" path="res://Mobs/sheep.gd" id="1_xu105"]
-[ext_resource type="Script" path="res://Mobs/StateMachine.gd" id="3_jiqov"]
-[ext_resource type="Script" path="res://Scripts/Idle.gd" id="4_a8fop"]
-[ext_resource type="Script" path="res://Scripts/SheepFollow.gd" id="4_sy2v6"]
-[ext_resource type="Script" path="res://Scripts/Breed.gd" id="5_862ah"]
-[ext_resource type="Script" path="res://Mobs/Label.gd" id="6_btua3"]
-[ext_resource type="Script" path="res://Mobs/Health.gd" id="8_8felr"]
+[ext_resource type="Script" path="res://Mobs/sheep.gd" id="1_sv77i"]
+[ext_resource type="Script" path="res://Mobs/StateMachine.gd" id="2_1i2yq"]
+[ext_resource type="Script" path="res://Scripts/Idle.gd" id="3_kw68l"]
+[ext_resource type="Script" path="res://Scripts/SheepFollow.gd" id="4_o4ouh"]
+[ext_resource type="Script" path="res://Scripts/Breed.gd" id="5_412aq"]
+[ext_resource type="Texture2D" uid="uid://bsrtl387it3yb" path="res://MiniWorldSprites/Animals/Boar.png" id="6_kh1m1"]
+[ext_resource type="Script" path="res://Mobs/Label.gd" id="7_qtgj3"]
+[ext_resource type="Script" path="res://Mobs/Health.gd" id="8_5urd8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q7ldy"]
-atlas = ExtResource("1_dm3rg")
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4lc1"]
+atlas = ExtResource("6_kh1m1")
 region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hsbvn"]
-atlas = ExtResource("1_dm3rg")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xht0"]
+atlas = ExtResource("6_kh1m1")
 region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xekih"]
-atlas = ExtResource("1_dm3rg")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vakce"]
+atlas = ExtResource("6_kh1m1")
 region = Rect2(16, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tdhex"]
-atlas = ExtResource("1_dm3rg")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5viyg"]
+atlas = ExtResource("6_kh1m1")
 region = Rect2(32, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xj17k"]
-atlas = ExtResource("1_dm3rg")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k8ui"]
+atlas = ExtResource("6_kh1m1")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ba2w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q7ldy")
+"texture": SubResource("AtlasTexture_g4lc1")
 }],
 "loop": true,
 "name": &"Idle",
@@ -41,16 +41,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hsbvn")
+"texture": SubResource("AtlasTexture_4xht0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xekih")
+"texture": SubResource("AtlasTexture_vakce")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tdhex")
+"texture": SubResource("AtlasTexture_5viyg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xj17k")
+"texture": SubResource("AtlasTexture_7k8ui")
 }],
 "loop": true,
 "name": &"Run",
@@ -66,30 +66,32 @@ radius = 93.1933
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ffk6"]
 radius = 36.0555
 
-[node name="Sheep" type="CharacterBody2D" groups=["Sheep"]]
-script = ExtResource("1_xu105")
+[node name="boar" type="CharacterBody2D" groups=["Sheep"]]
+script = ExtResource("1_sv77i")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_jiqov")
+script = ExtResource("2_1i2yq")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("4_a8fop")
+script = ExtResource("3_kw68l")
 enemy = NodePath("../..")
 
 [node name="SheepFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("4_sy2v6")
+script = ExtResource("4_o4ouh")
 enemy = NodePath("../..")
 
 [node name="Breed" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("5_862ah")
+script = ExtResource("5_412aq")
 enemy = NodePath("../..")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["boar"]]
 position = Vector2(1, -2)
 scale = Vector2(2.5625, 2.5625)
 sprite_frames = SubResource("SpriteFrames_0ba2w")
-animation = &"Idle"
+animation = &"Run"
+autoplay = "Run"
+frame_progress = 0.380887
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -3.75)
@@ -110,14 +112,14 @@ offset_left = -16.0
 offset_top = -85.0
 offset_right = 24.0
 offset_bottom = -62.0
-script = ExtResource("6_btua3")
+script = ExtResource("7_qtgj3")
 
 [node name="Health" type="Label" parent="."]
 offset_left = -22.0
 offset_top = -98.0
 offset_right = 25.0
 offset_bottom = -75.0
-script = ExtResource("8_8felr")
+script = ExtResource("8_5urd8")
 
 [node name="Pregnant" type="Timer" parent="."]
 wait_time = 5.0

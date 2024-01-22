@@ -8,7 +8,6 @@ var rng = RandomNumberGenerator.new()
 @onready var plant = preload("res://grass.tscn")
 var preg = 0
 var pos
-var ballPath = load("res://Mobs/sheep.tscn")
 
 func _ready():
 	pass
@@ -23,9 +22,6 @@ func _process(delta):
 		inst(Vector2(rand_x, rand_y))
 		print("Asdasdw")
 		timer = 0
-	while(preg > 0):
-		createBall(pos)
-		preg -= 1
 
 func inst(pos):
 	var instance = plant.instantiate()
@@ -36,7 +32,4 @@ func inst(pos):
 		#print("asdloihj")
 		#spawn = false
 
-func createBall(mousePosition):
-	var newBall = ballPath.instantiate()
-	newBall.position = mousePosition
-	add_child(newBall)
+
