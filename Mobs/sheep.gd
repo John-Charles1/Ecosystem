@@ -52,22 +52,22 @@ func _on_area_2d_body_entered(body):
 	if(!body.is_in_group("Sheep") and body != $"../StaticBody2D" and body != $"../water" and !body.is_in_group("predator")):
 		test = true
 		player1 = body
-		print(body.name+"en")
-	elif(body.is_in_group("Sheep") and body != $"../StaticBody2D" and body != $"../water" and health > 15 and body != self and breed_drive >= 10):
+		#print(body.name+"en")
+	elif(body.is_in_group("Sheep") and body != $"../StaticBody2D" and body != $"../water" and health > 15 and body != self and breed_drive >= 5):
 		breed = true
 		player1 = body
-		print(body.name+"en breed")
+		#print(body.name+"en breed")
 
 
 func _on_area_2d_body_exited(body):
 	if(health <= 15):
 		test = false
 		player1 = body
-		print(body.name+"ex")
+		#print(body.name+"ex")
 	elif(health > 15):
 		breed = false
 		player1 = body
-		print(body.name+"ex breed")
+		#print(body.name+"ex breed")
 
 
 func _on_eat_body_entered(body):
@@ -75,13 +75,15 @@ func _on_eat_body_entered(body):
 		health += 15
 		body.queue_free()
 		test = false
-	elif(body.is_in_group("Sheep") and body != $"../water" and health > 15 and body != self and breed_drive >= 10):
+		$"../..".plant_count -= 1
+		
+	elif(body.is_in_group("Sheep") and body != $"../water" and health > 15 and body != self and breed_drive >= 5):
 		breed = false
 		$Pregnant.start()
 		child_pos = body.global_position
 		mother_pos = body
-		breed_drive = 0
-		print("bred")
+		breed_drive = -10
+		#print("bred")
 
 func _on_pregnant_timeout():
 		#$"../..".preg+=1$".."

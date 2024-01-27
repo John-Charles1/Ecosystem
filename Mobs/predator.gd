@@ -53,7 +53,10 @@ func _on_area_2d_body_entered(body):
 	if(!body.is_in_group("predator") and body.is_in_group("Sheep") and body != $"../StaticBody2D" and body != $"../water"):
 		test = true
 		player1 = body
+		$Area2D/CollisionShape2D.set_disabled(true)
+		print("disable")
 		print(body.name+"en")
+		
 	elif(body.is_in_group("predator") and !body.is_in_group("plants") and body != $"../StaticBody2D" and body != $"../water" and health > 15 and body != self and breed_drive >= 10 and body.breed_drive >= 10):
 		breed = true
 		player1 = body
@@ -83,8 +86,8 @@ func _on_eat_body_entered(body):
 			$Pregnant.start()
 		child_pos = body.global_position
 		mother_pos = body
-		breed_drive = -1000
-		body.breed_drive = -1000
+		breed_drive = -20
+		body.breed_drive = -20
 		had_a_child = true
 		body.had_a_child = true
 		print("bred")

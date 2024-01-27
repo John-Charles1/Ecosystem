@@ -12,4 +12,5 @@ func _physics_process(delta):
 func createBall(mousePosition):
 	var newBall = ballPath.instantiate()
 	newBall.set_position(mousePosition)
+	newBall.add_to_group("sheep")
 	add_child(newBall)
